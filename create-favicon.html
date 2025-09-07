@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Create Favicon</title>
+</head>
+<body>
+    <canvas id="favicon" width="32" height="32" style="border: 1px solid #ccc; width: 128px; height: 128px; image-rendering: pixelated;"></canvas>
+    
+    <script>
+        const canvas = document.getElementById('favicon');
+        const ctx = canvas.getContext('2d');
+        
+        // Clear canvas
+        ctx.clearRect(0, 0, 32, 32);
+        
+        // Background circle
+        ctx.fillStyle = '#2c1810';
+        ctx.beginPath();
+        ctx.arc(16, 16, 14, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Coffee cup body
+        ctx.fillStyle = '#D2691E';
+        ctx.fillRect(10, 12, 8, 10);
+        
+        // Coffee liquid
+        ctx.fillStyle = '#4a3428';
+        ctx.fillRect(11, 13, 6, 3);
+        
+        // Cup handle
+        ctx.strokeStyle = '#D2691E';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(20, 16, 3, 0.5, 5.8);
+        ctx.stroke();
+        
+        // Steam
+        ctx.strokeStyle = '#f4e4bc';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(12, 10);
+        ctx.lineTo(12, 6);
+        ctx.moveTo(14, 10);
+        ctx.lineTo(14, 6);
+        ctx.moveTo(16, 10);
+        ctx.lineTo(16, 6);
+        ctx.stroke();
+        
+        // Letter M
+        ctx.fillStyle = '#f4e4bc';
+        ctx.font = 'bold 8px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('M', 16, 28);
+        
+        // Generate download link
+        setTimeout(() => {
+            const dataURL = canvas.toDataURL('image/png');
+            console.log('Copy this data URL for the favicon:');
+            console.log(dataURL);
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.download = 'favicon.png';
+            link.href = dataURL;
+            link.textContent = 'Download Favicon';
+            document.body.appendChild(link);
+        }, 100);
+    </script>
+</body>
+</html>

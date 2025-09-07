@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Favicon Generator</title>
+</head>
+<body>
+    <canvas id="faviconCanvas" width="64" height="64" style="border: 1px solid #ccc; image-rendering: pixelated; width: 128px; height: 128px;"></canvas>
+    
+    <script>
+        const canvas = document.getElementById('faviconCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Clear canvas with transparent background
+        ctx.clearRect(0, 0, 64, 64);
+        
+        // Create circular background
+        ctx.fillStyle = '#2c1810'; // Dark brown
+        ctx.beginPath();
+        ctx.arc(32, 32, 30, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Add coffee cup shape
+        ctx.fillStyle = '#D2691E'; // Orange/brown accent
+        
+        // Cup body
+        ctx.beginPath();
+        ctx.roundRect(18, 20, 20, 22, 2);
+        ctx.fill();
+        
+        // Cup handle
+        ctx.strokeStyle = '#D2691E';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(40, 30, 6, 0.3, 5.8);
+        ctx.stroke();
+        
+        // Coffee liquid
+        ctx.fillStyle = '#4a3428'; // Darker brown for coffee
+        ctx.beginPath();
+        ctx.roundRect(20, 22, 16, 6, 1);
+        ctx.fill();
+        
+        // Steam lines
+        ctx.strokeStyle = '#f4e4bc'; // Light cream color
+        ctx.lineWidth = 1.5;
+        ctx.lineCap = 'round';
+        
+        // Steam line 1
+        ctx.beginPath();
+        ctx.moveTo(24, 18);
+        ctx.quadraticCurveTo(26, 14, 24, 10);
+        ctx.stroke();
+        
+        // Steam line 2
+        ctx.beginPath();
+        ctx.moveTo(28, 18);
+        ctx.quadraticCurveTo(30, 14, 28, 10);
+        ctx.stroke();
+        
+        // Steam line 3
+        ctx.beginPath();
+        ctx.moveTo(32, 18);
+        ctx.quadraticCurveTo(34, 14, 32, 10);
+        ctx.stroke();
+        
+        // Letter "M" in bottom portion
+        ctx.fillStyle = '#f4e4bc'; // Light cream
+        ctx.font = 'bold 14px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('M', 32, 54);
+        
+        // Convert canvas to favicon
+        setTimeout(() => {
+            const link = document.createElement('a');
+            link.download = 'favicon.ico';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }, 100);
+    </script>
+</body>
+</html>
